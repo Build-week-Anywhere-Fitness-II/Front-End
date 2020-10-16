@@ -7,6 +7,7 @@ import About from './about';
 import UserProfile from './userProfile';
 import ClassList from './classList';
 import ClassSearch from './classSearch'
+import ClassDetail from './classDetail';
 
 const Routes = () => {
 return (
@@ -17,6 +18,7 @@ return (
         <Route exact path="/register" component={Register} />
         <Route exact path='/user' component={UserProfile}/>
         <Route exact path ="/classes" component={ClassSearch}/>
+        <Route path = "/classes/:classId" component={ClassDetail}/>
     </div>
 )
 }
