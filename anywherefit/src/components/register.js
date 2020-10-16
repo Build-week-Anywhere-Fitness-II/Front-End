@@ -19,7 +19,8 @@ const Register = () => {
     //set errors array to log errors
     const [errors,setErrors] = useState({
         name:"",
-        password:""
+        password:"",
+        role:""
     })
 
     // change the value of the field to equal user input
@@ -56,7 +57,9 @@ const Register = () => {
 
     const formSchema = yup.object().shape({
         username:yup.string().required('Username required'),
-        password:yup.string().required('Password Required').min(5,'password too short')
+        password:yup.string().required('Password Required').min(5,'password too short'),
+        role:yup.string()
+        
     })
 
 return (
@@ -74,7 +77,7 @@ return (
         </FormGroup>
         <FormGroup>
         <Label htmlFor="password">Password: </Label>
-        <Input type="text"
+        <Input type="password"
         data-cy="password"
         name="password"
         placeholder="password"
@@ -84,7 +87,7 @@ return (
         </FormGroup>
         <FormGroup>
         <Label>User Type<br/>
-            <select id="userType" name="userType" defaultValue="client" data-cy="userType" onChange={handleChange}>
+            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange}>
                 <option value="client">Client</option>
                 <option value="instructor">Instructor</option>
             </select>
