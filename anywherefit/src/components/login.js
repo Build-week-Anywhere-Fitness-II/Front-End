@@ -34,21 +34,22 @@ history.push(`/user/${res.data.id}`)
 
 
 return (
-<Card>
+<Card className="form-card">
     <Form onSubmit={submit}>
-        <Label for="username"/>
+        <h2 className='form-h2'>Login</h2>
+        <Label for="username">Username: </Label>
         <Input type="text"
         name = "username"
         placeholder="username"
         value={login.username}
         onChange={handleChange}/>
-        <Label for="password"/>
+        <Label for="password">Password:</Label>
         <Input type="text"
         name="password"
         placeholder="password"
         value={login.password}
         onChange={handleChange}/>
-        <Button>Login</Button>
+        <Button className="form-submit">Login</Button>
     </Form>
 </Card>
 )
