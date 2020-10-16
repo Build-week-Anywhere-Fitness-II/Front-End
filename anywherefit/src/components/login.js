@@ -17,19 +17,19 @@ const Login = () => {
         })
     }
 const history = useHistory();
-    const submit =(e) => {
+    const submit = async (e) => {
 e.preventDefault();
 axios
 .post('http://localhost:3300/api/users/login', login)
 .then(res => {
 console.log(res.data);
-window.localStorage.setItem('token', res.data.token)
-window.localStorage.setItem('role', res.data.role)
-window.localStorage.setItem('user', res.data.id)
-
+window.sessionStorage.setItem('token', res.data.token)
+window.sessionStorage.setItem('role', res.data.role)
+window.sessionStorage.setItem('user', res.data.id)
+history.push(`/user/${res.data.id}`)
 })
 .catch((err) => console.log(err));
-history.push(`/user/${window.localStorage.getItem('user')}`)
+
     }
 
 
