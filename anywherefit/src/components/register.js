@@ -1,31 +1,74 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Card, Form, Input, Label, Button, FormGroup } from "reactstrap";
+import * as yup from 'yup';
 
 const Register = () => {
+    
     const [signUp, setSignUp] = React.useState({
         username:'',
         password:'',
-        instructor:false,
+        role: {
+            instructor:false,
+            client:false
+        }
     });
 
+    // state disabled for button
+    const [isDisabled,setisDisabled] = useState(true);
+
+    //set errors array to log errors
+    const [errors,setErrors] = useState({
+        name:"",
+        password:"",
+        role:""
+    })
+
+    // change the value of the field to equal user input
     const handleChange = (e) => {
         setSignUp({
             ...signUp,
             [e.target.name]:e.target.value
         })
+        validateChanges(e)
     }
-    const handleChecked = (e) => {
-setSignUp({
-    ...signUp,
-    [e.target.name]:e.target.checked
-})
+
+//     const handleChecked = (e) => {
+// setSignUp({
+//     ...signUp,
+//     [e.target.name]:e.target.checked
+// })
+//     }
+    // post to DB when available
+    const submitForm = (e) => {
+        e.preventDefault();
     }
+
+    //when all forms are valid submit is no longer disabled
+    useEffect(()=>{
+        formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
+    },[signUp])
+
+    const validateChanges= (e) =>{
+        e.persist()
+        yup.reach(formSchema,e.target.name).validate(e.target.value)
+        .then(valid => setErrors({...errors,[e.target.name]:''}))
+        .catch(err => setErrors({...errors,[e.target.name]:err.errors[0]}))
+    }
+
+    const formSchema = yup.object().shape({
+        username:yup.string().required('Username required'),
+        password:yup.string().required('Password Required').min(5,'password too short'),
+        role:yup.string()
+        
+    })
+
 return (
 <Card>
-    <Form>
+    <Form onSubmit={submitForm}>
         <FormGroup>
-        <Label for="username">Username: </Label>
+        <Label htmlFor="username">Username: </Label>
         <Input type="text"
+        data-cy="username"
         name = "username"
         id="username"
         placeholder="username"
@@ -33,8 +76,9 @@ return (
         onChange={handleChange}/>
         </FormGroup>
         <FormGroup>
-        <Label for="password">Password: </Label>
-        <Input type="text"
+        <Label htmlFor="password">Password: </Label>
+        <Input type="password"
+        data-cy="password"
         name="password"
         placeholder="password"
         id="password"
@@ -42,17 +86,15 @@ return (
         onChange={handleChange}/>
         </FormGroup>
         <FormGroup>
-        <Label for="instructor">
-            <Input type="checkbox"
-        name="instructor"
-        id="instructor"
-        value={signUp.instructor}
-        onChange={handleChecked}/>
-        Are you an Instructor?
+        <Label>User Type<br/>
+            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange}>
+                <option value="client">Client</option>
+                <option value="instructor">Instructor</option>
+            </select>
         </Label>
         </FormGroup>
 
-        <Button>Sign Up</Button>
+        <Button type="submit" data-cy="submit">Sign Up</Button>
     </Form>
 </Card>
 )

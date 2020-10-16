@@ -22,7 +22,7 @@ const NavBar = () => {
                    <img src={Logo}></img>
                 </NavbarBrand>
                <NavItem style={{listStyle:'none'}} >
-                   <NavLink href="/" style={{color:'#E4576E'}}>About Us</NavLink>
+                   <NavLink href="/about" style={{color:'#E4576E'}}>About Us</NavLink>
                </NavItem>
                <NavItem style={{listStyle:'none'}} >
                    <NavLink href="/classes" style={{color:'#E4576E'}}>Classes</NavLink>
@@ -34,13 +34,13 @@ const NavBar = () => {
                 <DropdownMenu >
                     <DropdownItem>
                     <NavItem style={{listStyle:'none'}} >
-                        <NavLink href="/" style={{color:'black'}}>
+                        <NavLink href="/login" style={{color:'black'}}>
                             Log-In
                         </NavLink>
                     </NavItem>
                     </DropdownItem>
                     <DropdownItem>
-                        <NavLink href="/" style={{color:'black'}}>
+                        <NavLink href="/register" style={{color:'black'}}>
                             Sign-Up
                         </NavLink>
                     </DropdownItem>
