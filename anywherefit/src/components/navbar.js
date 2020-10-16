@@ -10,9 +10,9 @@ import {
     DropdownMenu,
     DropdownItem,
     CustomInput,
-    Label,
     } from 'reactstrap';
     import useDarkMode from '../utils/custom hooks/useDarkMode';
+    import Login from './login';
 
 const NavBar = () => {
     const [isOpen,setIsOpen] = useState(false);
@@ -32,7 +32,7 @@ const NavBar = () => {
     return (
         <div>
 
-           <Navbar color="dark" light expand="md" className="flex-d justify-content-center">
+           <Navbar light expand="md" className="flex-d justify-content-center" style={{backgroundColor:'#1e222e'}}>
                <NavbarBrand className="flex-d justify-content-center"href="/" style={{color:'white',fontWeight:'bold'}}>
                    <img src={Logo}></img>
                 </NavbarBrand>

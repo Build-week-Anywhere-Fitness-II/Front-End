@@ -1,0 +1,50 @@
+div.card {
+  margin: 12% auto;
+  width: 40%;
+}
+
+input.form-control {
+  height: 4%;
+  margin: auto;
+  width: 60%;
+}
+
+h2.form-h2 {
+  margin: 2% 0%;
+}
+
+button.form-submit {
+  margin-bottom: 2%;
+}
+
+/*Dark Mode styles */
+
+.dark-mode .card.form-card {
+  background-color: #1e222e;
+}
+.dark-mode .card.form-card label {
+  color: #e4756e;
+}
+
+.dark-mode .card.form-card h2 {
+  color: #e4756e;
+}
+.dark-mode .card.form-card button {
+  background-color: #e4756e;
+  color: #1e222e;
+}
+.dark-mode .card.form-card input {
+  background-color: #4d4d4d;
+  color: black;
+}
+.dark-mode .card.form-card select {
+  background-color: #4d4d4d;
+}
+
+.dark-mode .card.form-card option {
+  background-color: #4d4d4d;
+  color: #e4756e;
+}
+body.dark-mode {
+  background: #4d4d4d;
+}

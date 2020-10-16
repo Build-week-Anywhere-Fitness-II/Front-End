@@ -1,5 +1,5 @@
 import React from "react";
-import useSessionStorage from './useSessionStorage';
+import useSessionStorage from "./useSessionStorage";
 
 const useDarkMode = () => {
   const [someValue, setSomeValue] = useSessionStorage(false);

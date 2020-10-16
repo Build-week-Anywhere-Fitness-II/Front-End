@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from "react";
-import { Card, Form, Input, Label, Button, FormGroup } from "reactstrap";
+import { Card, Form, Input, Label, Button, FormGroup, CardTitle } from "reactstrap";
 import * as yup from 'yup';
 import axios from "axios";
 import {useHistory} from 'react-router-dom';
+import './styles/register.css';
 
 const Register = () => {
     
@@ -87,10 +88,11 @@ const history = useHistory();
     // })
 
 return (
-<Card>
+<Card className="form-card">
+    <h2 className="form-h2">GetStarted</h2>
     <Form onSubmit={submitForm}>
         <FormGroup>
-            <Label></Label>
+            <Label for="fullName">Full Name: </Label>
             <Input type="text"
         data-cy="fullName"
         name = "name"
@@ -129,7 +131,7 @@ return (
         </Label>
         </FormGroup>
 
-        <Button type="submit" data-cy="submit">Sign Up</Button>
+        <Button className="form-submit" type="submit" data-cy="submit">Sign Up</Button>
     </Form>
 </Card>
 )
