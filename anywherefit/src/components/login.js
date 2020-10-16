@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, Form, Input, Label, Button } from "reactstrap";
 import {useHistory} from 'react-router-dom';
+import axios from "axios";
 
 const Login = () => {
     const [login, setLogin] = React.useState({
@@ -18,8 +19,20 @@ const Login = () => {
 const history = useHistory();
     const submit =(e) => {
 e.preventDefault();
-history.push("/user")
+axios
+.post('http://localhost:3300/api/users/login', login)
+.then(res => {
+console.log(res.data);
+window.localStorage.setItem('token', res.data.token)
+window.localStorage.setItem('role', res.data.role)
+window.localStorage.setItem('user', res.data.id)
+
+})
+.catch((err) => console.log(err));
+history.push(`/user/${window.localStorage.getItem('user')}`)
     }
+
+
 return (
 <Card>
     <Form onSubmit={submit}>

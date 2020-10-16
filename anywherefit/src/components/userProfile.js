@@ -1,9 +1,13 @@
 import React from 'react';
+import ClientProfile from './clientProfile';
+import InstructorProfile from './instructorProfile';
 
 const UserProfile =() => {
+    const role = window.localStorage.getItem('role')
+    console.log(role);
 return (
 <div>
-    <h1>UserProfile Here</h1>
+    {role === 'Client' ? <ClientProfile/> : <InstructorProfile/>}
 </div>
 );
 }
