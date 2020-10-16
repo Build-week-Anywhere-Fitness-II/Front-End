@@ -84,14 +84,14 @@ return (
         </FormGroup>
         <FormGroup>
         <Label>User Type<br/>
-            <select id="userType" name="userType" defaultValue="client" onChange={handleChange}>
-                <option data-cy="client" value="client">Client</option>
-                <option data-cy="instructor" value="instructor">Instructor</option>
+            <select id="userType" name="userType" defaultValue="client" data-cy="userType" onChange={handleChange}>
+                <option value="client">Client</option>
+                <option value="instructor">Instructor</option>
             </select>
         </Label>
         </FormGroup>
 
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" data-cy="submit">Sign Up</Button>
     </Form>
 </Card>
 )
