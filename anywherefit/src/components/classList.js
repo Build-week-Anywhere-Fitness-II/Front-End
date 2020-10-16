@@ -1,34 +1,14 @@
 import React from 'react';
 import Class from './class'
+import ClassSearch from './classSearch';
 
-const testData = [{
-    classId:1,
-    className:'firstClass'
-},
-{
-    classId:2,
-    className:'firstClass'
-},
-{
-    classId:3,
-    className:'firstClass'
-},
-{
-    classId:4,
-    className:'firstClass'
-},
-{
-    classId:5,
-    className:'firstClass'
-}
-]
-
-const ClassList = () => {
+const ClassList = (props) => {
+    console.log(props.data)
     return (
         <div className="py-5">
             <div className="container">
                 <div className="row">
-                    {testData.map((item,index)=>{
+                    {props.data.map((item,index)=>{
                         return <Class key={item.classId} class={item}/>
                 })}
                 </div>
