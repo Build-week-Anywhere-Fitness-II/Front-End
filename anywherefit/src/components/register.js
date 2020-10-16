@@ -1,16 +1,21 @@
 import React, {useState,useEffect} from "react";
 import { Card, Form, Input, Label, Button, FormGroup } from "reactstrap";
 import * as yup from 'yup';
+import axios from "axios";
+import {useHistory} from 'react-router-dom';
 
 const Register = () => {
     
     const [signUp, setSignUp] = React.useState({
+        name:'',
         username:'',
         password:'',
-        role: {
+        role: "",
+        //role has to be string for api
+        /*{
             instructor:false,
-            client:false
-        }
+            client:false 
+        }*/
     });
 
     // state disabled for button
@@ -22,6 +27,10 @@ const Register = () => {
         password:"",
         role:""
     })
+    
+//state for server side errors
+const [serverError, setServerError] = useState('');
+
 
     // change the value of the field to equal user input
     const handleChange = (e) => {
@@ -29,7 +38,7 @@ const Register = () => {
             ...signUp,
             [e.target.name]:e.target.value
         })
-        validateChanges(e)
+        // validateChanges(e)
     }
 
 //     const handleChecked = (e) => {
@@ -39,32 +48,57 @@ const Register = () => {
 // })
 //     }
     // post to DB when available
+
+const history = useHistory();
+
     const submitForm = (e) => {
         e.preventDefault();
+        console.log(signUp);
+        axios
+        .post("http://localhost:3300/api/users/register", signUp)
+        .then((res) => {
+            console.log("returned data from post", res.data);
+            history.push('/login');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     //when all forms are valid submit is no longer disabled
-    useEffect(()=>{
-        formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
-    },[signUp])
 
-    const validateChanges= (e) =>{
-        e.persist()
-        yup.reach(formSchema,e.target.name).validate(e.target.value)
-        .then(valid => setErrors({...errors,[e.target.name]:''}))
-        .catch(err => setErrors({...errors,[e.target.name]:err.errors[0]}))
-    }
 
-    const formSchema = yup.object().shape({
-        username:yup.string().required('Username required'),
-        password:yup.string().required('Password Required').min(5,'password too short'),
-        role:yup.string()
+    // useEffect(()=>{
+    //     formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
+    // },[signUp])
+
+    // const validateChanges= (e) =>{
+    //     e.persist()
+    //     yup.reach(formSchema,e.target.name).validate(e.target.value)
+    //     .then(valid => setErrors({...errors,[e.target.name]:''}))
+    //     .catch(err => setErrors({...errors,[e.target.name]:err.errors[0]}))
+    // }
+
+    // const formSchema = yup.object().shape({
+    //     username:yup.string().required('Username required'),
+    //     password:yup.string().required('Password Required').min(5,'password too short'),
+    //     role:yup.string()
         
-    })
+    // })
 
 return (
 <Card>
     <Form onSubmit={submitForm}>
+        <FormGroup>
+            <Label></Label>
+            <Input type="text"
+        data-cy="fullName"
+        name = "name"
+        id="fullName"
+        placeholder="Full Name"
+        value={signUp.name}
+        onChange={handleChange}/>
+        </FormGroup>
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
         <Input type="text"
@@ -87,9 +121,10 @@ return (
         </FormGroup>
         <FormGroup>
         <Label>User Type<br/>
-            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange}>
-                <option value="client">Client</option>
-                <option value="instructor">Instructor</option>
+            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange} value={signUp.role}>
+                <option value=''>Select</option>
+                <option >Client</option>
+                <option >Instructor</option>
             </select>
         </Label>
         </FormGroup>
