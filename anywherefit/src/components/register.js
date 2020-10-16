@@ -3,7 +3,7 @@ import { Card, Form, Input, Label, Button, FormGroup, CardTitle } from "reactstr
 import * as yup from 'yup';
 import axios from "axios";
 import {useHistory} from 'react-router-dom';
-import './styles/register.css';
+import './styles/registerLogin.css';
 
 const Register = () => {
     
@@ -89,7 +89,7 @@ const history = useHistory();
 
 return (
 <Card className="form-card">
-    <h2 className="form-h2">GetStarted</h2>
+    <h2 className="form-h2">Get Started</h2>
     <Form onSubmit={submitForm}>
         <FormGroup>
             <Label for="fullName">Full Name: </Label>
