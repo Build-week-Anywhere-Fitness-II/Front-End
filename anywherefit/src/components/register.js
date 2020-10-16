@@ -56,7 +56,7 @@ const history = useHistory();
         e.preventDefault();
         console.log(signUp);
         axios
-        .post("http://localhost:3300/api/users/register", signUp)
+        .post("https://pt-anywhere-fitness.herokuapp.com/api/users/register", signUp)
         .then((res) => {
             console.log("returned data from post", res.data);
             history.push('/login');

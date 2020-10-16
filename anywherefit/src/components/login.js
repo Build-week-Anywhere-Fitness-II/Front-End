@@ -20,7 +20,7 @@ const history = useHistory();
     const submit = async (e) => {
 e.preventDefault();
 axios
-.post('http://localhost:3300/api/users/login', login)
+.post('https://pt-anywhere-fitness.herokuapp.com/api/users/login', login)
 .then(res => {
 console.log(res.data);
 window.sessionStorage.setItem('token', res.data.token)
