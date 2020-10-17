@@ -25,6 +25,7 @@ const Register = () => {
     //set errors array to log errors
     const [errors,setErrors] = useState({
         name:"",
+        username:"",
         password:"",
         role:""
     })
@@ -69,34 +70,34 @@ const history = useHistory();
     //when all forms are valid submit is no longer disabled
 
 
-    // useEffect(()=>{
-    //     formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
-    // },[signUp])
+    useEffect(()=>{
+        formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
+    },[signUp])
 
-    // const validateChanges= (e) =>{
-    //     e.persist()
-    //     yup.reach(formSchema,e.target.name).validate(e.target.value)
-    //     .then(valid => setErrors({...errors,[e.target.name]:''}))
-    //     .catch(err => setErrors({...errors,[e.target.name]:err.errors[0]}))
-    // }
+    const validateChanges= (e) =>{
+        e.persist()
+        yup.reach(formSchema,e.target.name).validate(e.target.value)
+        .then(valid => setErrors({...errors,[e.target.name]:''}))
+        .catch(err => setErrors({...errors,[e.target.name]:err.errors[0]}))
+    }
 
-    // const formSchema = yup.object().shape({
-    //     username:yup.string().required('Username required'),
-    //     password:yup.string().required('Password Required').min(5,'password too short'),
-    //     role:yup.string()
-        
-    // })
+    const formSchema = yup.object().shape({
+        name:yup.string().required("name required"),
+        username:yup.string().required('Username required'),
+        password:yup.string().required('Password Required').min(5,'password too short'),
+        role:yup.string()
+    })
 
 return (
 <Card className="form-card">
     <h2 className="form-h2">Get Started</h2>
     <Form onSubmit={submitForm}>
         <FormGroup>
-            <Label for="fullName">Full Name: </Label>
+            <Label for="name">Full Name: </Label>
             <Input type="text"
-        data-cy="fullName"
+        data-cy="name"
         name = "name"
-        id="fullName"
+        id="name"
         placeholder="Full Name"
         value={signUp.name}
         onChange={handleChange}/>
@@ -123,10 +124,10 @@ return (
         </FormGroup>
         <FormGroup>
         <Label>User Type<br/>
-            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange} value={signUp.role}>
+            <select id="role" name="role"data-cy="role" onChange={handleChange} value={signUp.role}>
                 <option value=''>Select</option>
-                <option >Client</option>
-                <option >Instructor</option>
+                <option value="client">Client</option>
+                <option value="instructor">Instructor</option>
             </select>
         </Label>
         </FormGroup>
