@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {withRouter} from 'react-router-dom'
 import './App.css';
 
 import Routes from './components/routes';
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
