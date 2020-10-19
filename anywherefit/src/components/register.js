@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-import { Card, Form, Input, Label, Button, FormGroup, CardTitle } from "reactstrap";
+import { Card, Form, Input, Label, Button, FormGroup } from "reactstrap";
 import * as yup from 'yup';
 import axios from "axios";
 import {useHistory} from 'react-router-dom';
@@ -31,7 +31,7 @@ const Register = () => {
     })
     
 //state for server side errors
-const [serverError, setServerError] = useState('');
+//const [serverError, setServerError] = useState('');
 
 
     // change the value of the field to equal user input
@@ -40,6 +40,9 @@ const [serverError, setServerError] = useState('');
             ...signUp,
             [e.target.name]:e.target.value
         })
+        e.persist();
+        validateChanges(e)
+        console.log(errors);
         // validateChanges(e)
     }
 
@@ -70,9 +73,9 @@ const history = useHistory();
     //when all forms are valid submit is no longer disabled
 
 
-    useEffect(()=>{
-        formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
-    },[signUp])
+      useEffect(() => {
+              formSchema.isValid(signUp).then((valid) => setisDisabled(!valid));
+          },[signUp])
 
     const validateChanges= (e) =>{
         e.persist()
@@ -132,7 +135,7 @@ return (
         </Label>
         </FormGroup>
 
-        <Button className="form-submit" type="submit" data-cy="submit">Sign Up</Button>
+        <Button className="form-submit" type="submit" data-cy="submit" disabled={isDisabled}>Sign Up</Button>
     </Form>
 </Card>
 )

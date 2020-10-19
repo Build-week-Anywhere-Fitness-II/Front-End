@@ -1,17 +1,8 @@
-import React, {useState,useEffect} from 'react'
-import { date } from 'yup'
+import React from 'react'
 
-const ClassDetail = (props) => {
-    const [classForm,setClassForm] = useState({
-        class_name:"",
-        type:"",
-        class_time:"",
-        duration_minutes:1,
-        intensity_level:1,
-        location:"",
-        attendees:0,
-        max_class_size:0,
-    })
+
+const ClassDetail = () => {
+
 
     return (
         <div>

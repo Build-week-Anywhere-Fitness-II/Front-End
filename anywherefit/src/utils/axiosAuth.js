@@ -5,8 +5,8 @@ export const Auth = () => {
 
   return axios.create({
     headers: {
-      authorization: token,
+      authorization: 'Bearer ' + token,
     },
-    baseURL: "http://localhost:3300/",
+    baseURL: "https://pt-anywhere-fitness.herokuapp.com/",
   });
 };
