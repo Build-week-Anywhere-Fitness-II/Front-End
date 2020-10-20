@@ -1,8 +1,8 @@
-import React, {useState,useEffect} from 'react'
-import { date } from 'yup'
-import InstructorProfile from './instructorProfile'
+import React from 'react'
 
-const ClassDetail = (props) => {
+
+const ClassDetail = () => {
+
 
     return (
         <div>
