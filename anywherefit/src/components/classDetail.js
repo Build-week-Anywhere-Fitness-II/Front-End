@@ -7,9 +7,7 @@ const ClassDetail = () => {
     return (
         <div>
             Details of class
-            <form>
-
-            </form>
+            <InstructorProfile/>
         </div>
     )
 }
