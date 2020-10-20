@@ -5,9 +5,8 @@ import {Route} from "react-router-dom";
 import Home from './marketing';
 import About from './about';
 import UserProfile from './userProfile';
-import ClassList from './classList';
-import ClassSearch from './classSearch'
-import ClassDetail from './classDetail';
+import PrivateRoute from '../utils/PrivateRoute'
+import classList from './classList';
 
 const Routes = () => {
 return (
@@ -16,9 +15,8 @@ return (
         <Route exact path="/About" component={About}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path='/user' component={UserProfile}/>
-        <Route exact path ="/classes" component={ClassSearch}/>
-        <Route path = "/classes/:classId" component={ClassDetail}/>
+        <PrivateRoute exact path='/user/:id' component={UserProfile}/>
+        <Route exact path ="/classes" component={classList}/>
     </div>
 )
 }

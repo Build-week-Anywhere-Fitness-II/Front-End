@@ -1,9 +1,15 @@
 import React from 'react'
 
-const ClassDetail = (props) => {
+
+const ClassDetail = () => {
+
+
     return (
         <div>
             Details of class
+            <form>
+
+            </form>
         </div>
     )
 }

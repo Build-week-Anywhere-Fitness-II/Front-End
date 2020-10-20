@@ -1,20 +1,34 @@
 import React from 'react';
-import Class from './class'
-import ClassSearch from './classSearch';
+import { fetchClasses} from '../utils/actions/classAction';
+import {connect} from 'react-redux';
+import ClassCard from './classCard';
+import { Container, Row } from 'reactstrap';
+
 
 const ClassList = (props) => {
-    console.log(props.data)
+React.useEffect(() => {
+    props.fetchClasses()
+},[]);
     return (
-        <div className="py-5">
-            <div className="container">
-                <div className="row">
-                    {props.data.map((item,index)=>{
-                        return <Class key={item.classId} class={item}/>
-                })}
-                </div>
-            </div>
-        </div>
+<div>
+    <h1>Classes</h1>
+    <Container>
+        <Row>
+    {props.classes.map((classes) => (
+<ClassCard class={classes} key={classes.id}/>
+    ))}
+    </Row>
+    </Container>
+</div>
     )
 }
 
-export default ClassList;
+const mapStateToProps = (state) => {
+return {
+classes: state.classes,
+isFetching: state.isFetching,
+error: state.error,
+};
+}
+
+export default connect(mapStateToProps, {fetchClasses})(ClassList);

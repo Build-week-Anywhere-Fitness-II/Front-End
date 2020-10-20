@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Logo from '../Logo.png';
 import {
     Navbar,
@@ -9,17 +9,31 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
+    CustomInput,
     } from 'reactstrap';
+    import useDarkMode from '../utils/custom hooks/useDarkMode';
 
 const NavBar = () => {
-    const [isOpen,setIsOpen] = useState(false);
+    //const [isOpen,setIsOpen] = useState(false);
 
-    const toggle = ()=>setIsOpen(!isOpen);
+    //State for Dark Mode
+    const [darkMode, setDarkMode] = useDarkMode(true);
+
+    //const toggle = ()=>setIsOpen(!isOpen);
+
+    //toggle Function for Dark Mode
+    const changeMode = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+    }
+
+
     return (
         <div>
-           <Navbar color="dark" light expand="md" className="flex-d justify-content-center">
+
+           <Navbar light expand="md" className="flex-d justify-content-center" style={{backgroundColor:'#1e222e'}}>
                <NavbarBrand className="flex-d justify-content-center"href="/" style={{color:'white',fontWeight:'bold'}}>
-                   <img src={Logo}></img>
+                   <img src={Logo} alt="Website Logo"></img>
                 </NavbarBrand>
                <NavItem style={{listStyle:'none'}} >
                    <NavLink href="/about" style={{color:'#E4576E'}}>About Us</NavLink>
@@ -46,6 +60,12 @@ const NavBar = () => {
                     </DropdownItem>
                 </DropdownMenu>
                 </UncontrolledDropdown>
+                <div>
+                <CustomInput type='switch' checked={darkMode}
+                onChange={changeMode}
+                id="toggleDarkMode"
+                label={darkMode ? "Dark Mode" : "Light Mode"}/>
+                </div>
             </Navbar> 
             
         </div>

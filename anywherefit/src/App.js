@@ -1,8 +1,7 @@
 import React from 'react';
-
+import {withRouter} from 'react-router-dom'
 import './App.css';
-import Login from './components/login';
-import Register from './components/register';
+
 import Routes from './components/routes';
 import NavBar from './components/navbar'
 
@@ -17,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

@@ -1,16 +1,22 @@
 import React, {useState,useEffect} from "react";
 import { Card, Form, Input, Label, Button, FormGroup } from "reactstrap";
 import * as yup from 'yup';
+import axios from "axios";
+import {useHistory} from 'react-router-dom';
+import './styles/registerLogin.css';
 
 const Register = () => {
     
     const [signUp, setSignUp] = React.useState({
+        name:'',
         username:'',
         password:'',
-        role: {
+        role: "",
+        //role has to be string for api
+        /*{
             instructor:false,
-            client:false
-        }
+            client:false 
+        }*/
     });
 
     // state disabled for button
@@ -19,9 +25,14 @@ const Register = () => {
     //set errors array to log errors
     const [errors,setErrors] = useState({
         name:"",
+        username:"",
         password:"",
         role:""
     })
+    
+//state for server side errors
+//const [serverError, setServerError] = useState('');
+
 
     // change the value of the field to equal user input
     const handleChange = (e) => {
@@ -29,7 +40,10 @@ const Register = () => {
             ...signUp,
             [e.target.name]:e.target.value
         })
+        e.persist();
         validateChanges(e)
+        console.log(errors);
+        // validateChanges(e)
     }
 
 //     const handleChecked = (e) => {
@@ -39,14 +53,29 @@ const Register = () => {
 // })
 //     }
     // post to DB when available
+
+const history = useHistory();
+
     const submitForm = (e) => {
         e.preventDefault();
+        console.log(signUp);
+        axios
+        .post("https://pt-anywhere-fitness.herokuapp.com/api/users/register", signUp)
+        .then((res) => {
+            console.log("returned data from post", res.data);
+            history.push('/login');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     //when all forms are valid submit is no longer disabled
-    useEffect(()=>{
-        formSchema.isValid(signUp).then(valid => setisDisabled(!valid));
-    },[signUp])
+
+
+      useEffect(() => {
+              formSchema.isValid(signUp).then((valid) => setisDisabled(!valid));
+          },[signUp])
 
     const validateChanges= (e) =>{
         e.persist()
@@ -56,15 +85,26 @@ const Register = () => {
     }
 
     const formSchema = yup.object().shape({
+        name:yup.string().required("name required"),
         username:yup.string().required('Username required'),
         password:yup.string().required('Password Required').min(5,'password too short'),
         role:yup.string()
-        
     })
 
 return (
-<Card>
+<Card className="form-card">
+    <h2 className="form-h2">Get Started</h2>
     <Form onSubmit={submitForm}>
+        <FormGroup>
+            <Label for="name">Full Name: </Label>
+            <Input type="text"
+        data-cy="name"
+        name = "name"
+        id="name"
+        placeholder="Full Name"
+        value={signUp.name}
+        onChange={handleChange}/>
+        </FormGroup>
         <FormGroup>
         <Label htmlFor="username">Username: </Label>
         <Input type="text"
@@ -87,14 +127,15 @@ return (
         </FormGroup>
         <FormGroup>
         <Label>User Type<br/>
-            <select id="role" name="role" defaultValue="client" data-cy="role" onChange={handleChange}>
+            <select id="role" name="role"data-cy="role" onChange={handleChange} value={signUp.role}>
+                <option value=''>Select</option>
                 <option value="client">Client</option>
                 <option value="instructor">Instructor</option>
             </select>
         </Label>
         </FormGroup>
 
-        <Button type="submit" data-cy="submit">Sign Up</Button>
+        <Button className="form-submit" type="submit" data-cy="submit" disabled={isDisabled}>Sign Up</Button>
     </Form>
 </Card>
 )
