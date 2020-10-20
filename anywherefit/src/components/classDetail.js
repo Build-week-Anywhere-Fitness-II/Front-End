@@ -1,15 +1,25 @@
 import React from 'react'
+import InstructorProfile from './InstructorComps/instructorProfile'
+import {Card,CardHeader} from 'reactstrap';
+import {connect} from 'react-redux';
 
+const ClassDetail = (props) => {
 
-const ClassDetail = () => {
-
-
+    console.log(props.classes[0])
+    console.log(props.match)
+    const aClass = props.classes.find(c => c.id === +props.match.params.classId)
+    console.log(aClass)
     return (
         <div>
-            Details of class
-            <InstructorProfile/>
+           <Card>
+              <CardHeader>
+                  {aClass.class_name}
+              </CardHeader> 
+            </Card> 
+            
         </div>
     )
 }
 
-export default ClassDetail
+const mapStateToProps = state =>state 
+export default connect(mapStateToProps)(ClassDetail);
