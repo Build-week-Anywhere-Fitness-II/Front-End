@@ -1,14 +1,18 @@
 import React from 'react';
 import Login from "./login";
 import Register from './register';
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import Home from './marketing';
 import About from './about';
 import UserProfile from './userProfile';
 import PrivateRoute from '../utils/PrivateRoute'
 import classList from './classList';
+import classDetail from './classDetail'
+import ClassDetail from './classDetail';
 
 const Routes = () => {
+
+    
 return (
     <div>
         <Route exact path="/" component={Home}/>
@@ -16,7 +20,10 @@ return (
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/user/:id' component={UserProfile}/>
-        <Route exact path ="/classes" component={classList}/>
+        <Switch>
+            <Route exact path ="/classes" component={classList}/>
+            <Route exact path ="/classes/:classId" component={classDetail}/>
+        </Switch>
     </div>
 )
 }

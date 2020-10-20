@@ -3,9 +3,11 @@ import { fetchClasses} from '../utils/actions/classAction';
 import {connect} from 'react-redux';
 import ClassCard from './classCard';
 import { Container, Row } from 'reactstrap';
+import ClassDetail from './classDetail';
 
 
 const ClassList = (props) => {
+    console.log(props)
 React.useEffect(() => {
     props.fetchClasses()
 },[]);
@@ -15,8 +17,9 @@ React.useEffect(() => {
     <Container>
         <Row>
     {props.classes.map((classes) => (
-<ClassCard class={classes} key={classes.id}/>
-    ))}
+            <ClassCard class={classes} key={classes.id}/>
+        ))}
+        
     </Row>
     </Container>
 </div>
