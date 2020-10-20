@@ -18,7 +18,7 @@ return (
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/user/:id' component={UserProfile}/>
-        <Route exact path ="/classes" component={ClassSearch}/>
+        <Route exact path ="/classes" component={ClassList}/>
         <Route path = "/classes/:classId" component={ClassDetail}/>
     </div>
 )

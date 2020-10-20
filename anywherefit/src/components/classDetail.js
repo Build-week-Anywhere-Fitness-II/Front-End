@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { date } from 'yup'
+
 import InstructorProfile from './instructorProfile'
 
 const ClassDetail = (props) => {
