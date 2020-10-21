@@ -8,7 +8,6 @@ import UserProfile from './userProfile';
 import PrivateRoute from '../utils/PrivateRoute'
 import classList from './classList';
 import classDetail from './classDetail'
-import ClassDetail from './classDetail';
 
 const Routes = () => {
 
