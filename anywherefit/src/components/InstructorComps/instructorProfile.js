@@ -2,8 +2,10 @@ import React from 'react';
 
 import InstructorModal from './instructorModal';
 import InstructorClassList from './InstructorClassList';
+import InstructorEdit from './InstructorEdit'
 
 const InstructorProfile =(props) => {
+
 return (
 <div>
     <h1>InstructorProfile Here</h1>
@@ -11,6 +13,8 @@ return (
 
 <InstructorClassList classes={props.classes} />
 
+{/* Edit a class */}
+<InstructorEdit classes={props.classes} />
 </div>
 );
 }
