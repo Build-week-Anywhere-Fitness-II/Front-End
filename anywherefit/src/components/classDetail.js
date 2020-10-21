@@ -2,13 +2,16 @@ import React from 'react'
 import InstructorProfile from './InstructorComps/instructorProfile'
 import {Card,CardHeader} from 'reactstrap';
 import {connect} from 'react-redux';
+import {signUp} from '../utils/actions/classAction';
 
 const ClassDetail = (props) => {
 
-    console.log(props.classes[0])
-    console.log(props.match)
+    //console.log(props.classes[0])
+    //console.log(props.match)
     const aClass = props.classes.find(c => c.id === +props.match.params.classId)
-    console.log(aClass)
+    //console.log(aClass)
+
+    
     return (
         <div>
            <Card>
