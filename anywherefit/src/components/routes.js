@@ -9,6 +9,7 @@ import PrivateRoute from '../utils/PrivateRoute'
 import classList from './classList';
 import classDetail from './classDetail'
 
+
 const Routes = () => {
 
     
