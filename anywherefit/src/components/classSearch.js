@@ -2,7 +2,8 @@ import React, {useState,useEffect} from 'react'
 import ClassList from './classList';
 
 
-// const ClassSearch = () => {
+ const ClassSearch = (props) => {
+     console.log('Search props',props.classes);
 //     const [searchTerm,setSearchTerm] = useState("");
 //     const [searchResults,setSearchResults] = useState(testData)
 
@@ -16,9 +17,9 @@ import ClassList from './classList';
 //     const handleChange = (e) =>{
 //         setSearchTerm(e.target.value)
 //     }
-//     return (
-//         <div>
-//             <form>
+ return (
+  <div>
+{/* //             <form>
 //                 <label htmlFor="className">Search:</label>
 //                 <input 
 //                     id="className"
@@ -30,9 +31,9 @@ import ClassList from './classList';
 //                     value={searchTerm}
 //                 />
 //             </form>
-//             <ClassList data={searchResults}/>
-//         </div>
-//     )
-// }
+//             <ClassList data={searchResults}/> */}
+      </div>
+   )
+ }
 
-// export default ClassSearch
+ export default ClassSearch

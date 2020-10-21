@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import ClassCard from './classCard';
 import { Container, Row } from 'reactstrap';
 import ClassDetail from './classDetail';
+import ClassSearch from './classSearch';
 
 
 const ClassList = (props) => {
@@ -14,6 +15,7 @@ React.useEffect(() => {
     return (
 <div>
     <h1>Classes</h1>
+    <ClassSearch classes={props.classes}/>
     <Container>
         <Row>
     {props.classes.map((classes) => (
