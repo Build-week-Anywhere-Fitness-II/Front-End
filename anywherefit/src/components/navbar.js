@@ -15,7 +15,7 @@ import {
 
 const NavBar = () => {
     //const [isOpen,setIsOpen] = useState(false);
-
+    const role = window.sessionStorage.getItem('role')
     //State for Dark Mode
     const [darkMode, setDarkMode] = useDarkMode(true);
 
@@ -26,7 +26,6 @@ const NavBar = () => {
     setDarkMode(!darkMode);
     console.log(darkMode);
     }
-
 
     return (
         <div>
@@ -60,6 +59,9 @@ const NavBar = () => {
                     </DropdownItem>
                 </DropdownMenu>
                 </UncontrolledDropdown>
+                <NavItem style={{listStyle:'none'}}>
+                    <NavLink href="/user/:user_id" style={{color:'#e4576e'}}> User Profile</NavLink>
+                </NavItem>
                 <div>
                 <CustomInput type='switch' checked={darkMode}
                 onChange={changeMode}

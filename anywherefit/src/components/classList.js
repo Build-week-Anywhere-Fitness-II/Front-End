@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { fetchClasses} from '../utils/actions/classAction';
 import {connect} from 'react-redux';
 import ClassCard from './classCard';
@@ -8,14 +8,21 @@ import ClassSearch from './classSearch';
 
 
 const ClassList = (props) => {
-    console.log(props)
-React.useEffect(() => {
-    props.fetchClasses()
-},[]);
+    console.log(props.classes)
+
+    React.useEffect(() => {
+        props.fetchClasses()
+        setnewList(props.classes)
+    },[]);
+
+    const [newList, setnewList] = useState([])
+
+    console.log(newList)
+    
     return (
 <div>
     <h1>Classes</h1>
-    <ClassSearch classes={props.classes}/>
+    <ClassSearch />
     <Container>
         <Row>
     {props.classes.map((classes) => (
@@ -37,3 +44,4 @@ error: state.error,
 }
 
 export default connect(mapStateToProps, {fetchClasses})(ClassList);
+
