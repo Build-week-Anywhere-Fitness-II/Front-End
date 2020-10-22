@@ -116,7 +116,7 @@ return (
             <FormGroup >
                 <Input type="number"
                 name="hours"
-                min="1"
+                min="0"
                 max="4"
                 value={form.hours}
                 onChange={handleChange}

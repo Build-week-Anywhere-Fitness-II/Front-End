@@ -76,10 +76,10 @@ export const SIGN_UP_DATA = "SIGN_UP_DATA";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_ERROR = "SIGN_UP_ERROR";
 
-export const signUp = (attData) => (dispatch) => { 
+export const signUp = (signUpInfo) => (dispatch) => { 
   dispatch({type: SIGN_UP_DATA})
   Auth()
-  .post('api/classes/signup', attData)
+  .post('api/classes/signup', signUpInfo)
   .then((res) => {
 console.log("sign up success", res.data);
 dispatch({type: SIGN_UP_SUCCESS, payload: res.data});

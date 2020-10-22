@@ -1,28 +1,55 @@
 import React from 'react'
-import InstructorProfile from './InstructorComps/instructorProfile'
-import {Card,CardHeader} from 'reactstrap';
+import {Card,CardHeader, Form, Button} from 'reactstrap';
 import {connect} from 'react-redux';
-import {signUp} from '../utils/actions/classAction';
+
+import { fetchClasses} from '../utils/actions/classAction';
+import { Auth } from '../utils/axiosAuth';
 
 const ClassDetail = (props) => {
-
-    //console.log(props.classes[0])
-    //console.log(props.match)
-    const aClass = props.classes.find(c => c.id === +props.match.params.classId)
-    //console.log(aClass)
-
+    const stringId = window.sessionStorage.getItem('user')
+    const numId= Number(stringId);
+    React.useEffect(() => {
+        props.fetchClasses()
+    },[]);
+    console.log(props)
     
+    
+    const exactClass = props.classes.find(e => e.id === +props.match.params.classId)
+
+ const signUpInfo = {
+    client_id:numId,
+ class_id: (exactClass ? exactClass.id : 0),
+
+ }
+ const submit = (e) => {
+     Auth()
+    .post('api/classes/signup', signUpInfo)
+    .then((res) => {
+  console.log("sign up success", res.data);
+    })
+     }
+console.log('sign up info', signUpInfo)
+    console.log('exact Class',exactClass);
     return (
         <div>
+                           {exactClass ? 
            <Card>
-              <CardHeader>
-                  {aClass.class_name}
-              </CardHeader> 
-            </Card> 
+               <CardHeader>
+                   {exactClass.class_name}
+               </CardHeader>
+               <Form onSubmit={submit}>
+               <Button>signUp</Button>
+               </Form>
+               </Card> 
+               :
+               <h1>Loading</h1>
             
+               }
         </div>
     )
 }
 
-const mapStateToProps = state =>state 
-export default connect(mapStateToProps)(ClassDetail);
+const mapStateToProps = state => {
+return state
+}
+export default connect(mapStateToProps,{fetchClasses})(ClassDetail);
