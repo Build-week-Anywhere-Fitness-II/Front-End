@@ -6,7 +6,7 @@ import ClassDetail from './classDetail';
 
 
 const ClassCard = (props) => {
-  
+  const history = useHistory();
 
     return (
       <Container>
@@ -22,7 +22,7 @@ const ClassCard = (props) => {
           <CardText>Workout Type: {e.type}</CardText>
           <CardText>Available Spots:{freeSpots} </CardText>
           <CardText> intensity level:{e.intensity_level}</CardText>
-          {/* <Button onClick={()=>history.push(`/classes/${props.data.id}`)}>Class Details</Button> */}
+          <Button onClick={()=>history.push(`/classes/${e.id}`)}>Class Details</Button> 
         </Card>
       </Col>
           );
