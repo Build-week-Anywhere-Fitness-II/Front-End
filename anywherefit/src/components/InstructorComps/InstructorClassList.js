@@ -4,7 +4,7 @@ import { Card, CardTitle, Col, Container, Row, CardText, Button } from 'reactstr
 
 const InstructorClassList = (props) => {
 const user = window.sessionStorage.getItem('user')
-const filteredArray = props.classes.filter(e => e.instructor_id == user).map((filtered) => {
+const filteredArray = props.classes.filter(e => e.instructor_id === Number(user)).map((filtered) => {
 return filtered
 })
 const history = useHistory();
