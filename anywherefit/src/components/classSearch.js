@@ -1,80 +1,61 @@
 import React, {useState,useEffect} from 'react'
 import ClassList from './classList';
-import { Container, FormGroup, Input, Form, Button, Label } from 'reactstrap';
+import { Container, FormGroup, Input, Form, Button, Label, Card } from 'reactstrap';
+import Fuse from 'fuse.js'
+import ClassCard from './classCard'
+
+const ClassSearch = ({data}) => {
+
+    const [query, setQuery] = useState('')
+    
+    
+    const options ={
+        isCaseSensitive:false,
+        includeMatches:true,
+        findAllMatches:true,
+        shouldSort:true,
+        keys:[
+            'class_name',
+            'class_date',
+            'duration_minutes',
+            'intensity_level',
+            'type',
+            'location'      
+    ]
+    };
+
+    const fuse = new Fuse(data,options)
+    const results = fuse.search(query)
+    const classResults = query ? results.map(result=>result.item) : data;
+    console.log('fuse',fuse)
+    console.log(results)
+
+    function handleOnSearch({ currentTarget = {}}){
+        const {value} = currentTarget;
+        setQuery(value);
+    }
 
 
-const ClassSearch = ({setSearch, search}) => {
-{//     useEffect(()=>{
-//         const results = testData.filter((item)=>{ 
-//             return item.className.toLowerCase().includes(searchTerm.toLowerCase())
-//         })
-//         setSearchResults(results);
-//     },[searchTerm])
-
-//     const handleChange = (e) =>{
-//         setSearchTerm(e.target.value)
-//     
-}
-const searchChange = (e) => {
-setSearch(e.target.value);
-console.log(search);
-}
-
-const [open, setOpen] = React.useState(false);
-const toggle = () => setOpen(!open);
+// const [open, setOpen] = React.useState(false);
  return (
   <Container>
-      <Form isOpen={open} toggle={toggle}>
+       <Form>
         <h1>Search For Your Class!</h1>
-        <FormGroup isOpen={open} toggle={toggle}>
-        <Label htmlFor="class_name">Class Name:</Label>
-        <Input 
-            id="class_name"
+        <FormGroup>
+        <Label htmlFor="search">Search:</Label>
+        <Input    
             type="text"
-            name="class_name"
-            data-cy="class_name"
-            value={search}
-            onChange={searchChange}
-        />
-        <Label htmlFor="class_date">Class Date:</Label>
-        <Input 
-            id="class_date"
-            type="date"
-            name="class_date"
-            data-cy="class_date"
-        />
-        <Label htmlFor="class_duration">Class Duration:</Label>
-        <Input 
-            id="class_duration"
-            type="number"
-            name="class_duration"
-            data-cy="class_duration"
-        />
-        <Label htmlFor="type">Class Type:</Label>
-        <Input 
-            id="type"
-            type="text"
-            name="type"
-            data-cy="type"
-        />
-        <Label htmlFor="intensity_level">Intensity Level:</Label>
-        <Input 
-            id="intensity_level"
-            type="number"
-            name="intensity_level"
-            data-cy="intensity_level"
-        />
-        <Label htmlFor="location">Location</Label>
-        <Input 
-            id="location"
-            type="text"
-            name="location"
-            data-cy="location"
+            id="search"
+            name="search"
+            value={query}
+            onChange={handleOnSearch}
+            placeholder="Search for a class"
         />
         </FormGroup>
-        <Button onClick={toggle}>Open Search</Button>
       </Form>
+        <ClassCard data={classResults}/>
   </Container>
+  
    )
  }
 
