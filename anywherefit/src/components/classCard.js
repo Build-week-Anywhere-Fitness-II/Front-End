@@ -7,7 +7,7 @@ import ClassDetail from './classDetail';
 
 const ClassCard = (props) => {
   const history = useHistory();
-
+  console.log(props)
     return (
       <Container>
       <Row>
@@ -15,7 +15,7 @@ const ClassCard = (props) => {
           const freeSpots = e.max_class_size - e.attendees;
           return (
         <Col xs="12" sm="6" md="4" lg="3">
-        <Card key={e.id}>
+        <Card key={e.id} style={{width:'100%'}}>
           <CardTitle>{e.class_name}</CardTitle>
     <CardSubtitle>Instructor: {e.instructor_id}</CardSubtitle> 
     <CardSubtitle>Class Time: {e.class_time}</CardSubtitle>
