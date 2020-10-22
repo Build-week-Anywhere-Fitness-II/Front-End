@@ -1,47 +1,37 @@
-import React, {useState} from 'react';
-import { fetchClasses} from '../utils/actions/classAction';
-import {connect} from 'react-redux';
+import React from 'react';
 import ClassCard from './classCard';
-import { Container, Row } from 'reactstrap';
-import ClassDetail from './classDetail';
+
 import ClassSearch from './classSearch';
+import {Auth} from '../utils/axiosAuth';
 
 
-const ClassList = (props) => {
-    console.log(props.classes)
+const ClassList = () => {
+const [data, setData] = React.useState([]);
+const [search, setSearch] = React.useState('');
 
-    React.useEffect(() => {
-        props.fetchClasses()
-        setnewList(props.classes)
-    },[]);
-
-    const [newList, setnewList] = useState([])
-
-    console.log(newList)
+ React.useEffect(() => {
+Auth()
+.get('api/classes')
+.then((res) => {
+console.log(res.data)
+const initialArray = res.data;
+const filteredArray = initialArray.filter((e) => {
+    return e.class_name.toLowerCase().includes(search.toLowerCase());
+});
+setData(filteredArray);
+})
+ }, [search])
+console.log(data);
     
     return (
 <div>
     <h1>Classes</h1>
-    <ClassSearch />
-    <Container>
-        <Row>
-    {props.classes.map((classes) => (
-            <ClassCard class={classes} key={classes.id}/>
-        ))}
-        
-    </Row>
-    </Container>
+    <ClassSearch setSearch={setSearch} search={search}/>
+    <ClassCard data={data}/>
 </div>
     )
 }
 
-const mapStateToProps = (state) => {
-return {
-classes: state.classes,
-isFetching: state.isFetching,
-error: state.error,
-};
-}
 
-export default connect(mapStateToProps, {fetchClasses})(ClassList);
+export default ClassList;
 

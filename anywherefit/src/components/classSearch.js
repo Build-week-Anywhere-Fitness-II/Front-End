@@ -3,18 +3,23 @@ import ClassList from './classList';
 import { Container, FormGroup, Input, Form, Button, Label } from 'reactstrap';
 
 
-const ClassSearch = (props) => {
-  const [searchResults,setSearchResults] = useState('')
-// //     useEffect(()=>{
-// //         const results = testData.filter((item)=>{
-// //             return item.className.toLowerCase().includes(searchTerm.toLowerCase())
-// //         })
-// //         setSearchResults(results);
-// //     },[searchTerm])
+const ClassSearch = ({setSearch, search}) => {
+{//     useEffect(()=>{
+//         const results = testData.filter((item)=>{ 
+//             return item.className.toLowerCase().includes(searchTerm.toLowerCase())
+//         })
+//         setSearchResults(results);
+//     },[searchTerm])
 
-// //     const handleChange = (e) =>{
-// //         setSearchTerm(e.target.value)
-// //     
+//     const handleChange = (e) =>{
+//         setSearchTerm(e.target.value)
+//     
+}
+const searchChange = (e) => {
+setSearch(e.target.value);
+console.log(search);
+}
+
 const [open, setOpen] = React.useState(false);
 const toggle = () => setOpen(!open);
  return (
@@ -28,6 +33,8 @@ const toggle = () => setOpen(!open);
             type="text"
             name="class_name"
             data-cy="class_name"
+            value={search}
+            onChange={searchChange}
         />
         <Label htmlFor="class_date">Class Date:</Label>
         <Input 
