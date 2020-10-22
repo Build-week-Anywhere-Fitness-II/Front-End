@@ -15,10 +15,10 @@ Auth()
 .then((res) => {
 console.log(res.data)
 const initialArray = res.data;
-const filteredArray = initialArray.filter((e) => {
-    return e.class_name.toLowerCase().includes(search.toLowerCase());
-});
-setData(filteredArray);
+// const filteredArray = initialArray.filter((e) => {
+//     return e.class_name.toLowerCase().includes(search.toLowerCase());
+// });
+setData(initialArray);
 })
  }, [search])
 console.log(data);
@@ -26,8 +26,8 @@ console.log(data);
     return (
 <div>
     <h1>Classes</h1>
-    <ClassSearch setSearch={setSearch} search={search}/>
-    <ClassCard data={data}/>
+    <ClassSearch data={data}/>
+    {/* <ClassCard data={data}/> */}
 </div>
     )
 }
