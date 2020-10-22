@@ -4,7 +4,8 @@ import {
     FETCH_ERROR,
     ADD_DATA,
     ADD_SUCCESS,
-    ADD_ERROR,} from '../actions/classAction';
+    ADD_ERROR
+  } from '../actions/classAction';
 
 const initialState = {
 classes: [],
@@ -35,20 +36,20 @@ errors:''
             case ADD_DATA:
               return {
                 ...state,
-                isAdding: true,
+                isFetching: true,
                 classes: [...state.classes],
               };
             case ADD_SUCCESS:
               return {
                 ...state,
-                isAdding: false,
+                isFetching: false,
                 classes: action.payload,
                 error: "",
               };
             case ADD_ERROR:
               return {
                 ...state,
-                isAdding: false,
+                isFetching: false,
                 error: action.payload,
               };
             default:
