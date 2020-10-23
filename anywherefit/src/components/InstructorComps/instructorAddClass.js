@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, FormGroup, Input, Form, Button } from 'reactstrap';
 
-const InstructorAddClass =(props) => {
+const InstructorAddClass =(props, {setUpdate}) => {
 
     // initial form state
     const [form, setForm] = React.useState({
@@ -44,7 +44,9 @@ const InstructorAddClass =(props) => {
 // handles form submit
         const submit =(e) => {
         e.preventDefault();
-        props.addClass(postForm);
+        props.addClass(postForm, ()=>{
+            setUpdate(true)
+        });
         }
 
 return (
