@@ -6,11 +6,11 @@ import "./styles/footer.css"
 const Footer = () => {
     return (
            <footer>
-<div id="footer">
-<FontAwesomeIcon icon={faFacebookSquare} size='4x'/>
-<FontAwesomeIcon icon={faTwitterSquare} size='4x'/>
-<FontAwesomeIcon icon={faInstagramSquare} size='4x'/>
-</div>
+                <div id="footer">
+                    <FontAwesomeIcon icon={faFacebookSquare} size='4x'/>
+                    <FontAwesomeIcon icon={faTwitterSquare} size='4x'/>
+                    <FontAwesomeIcon icon={faInstagramSquare} size='4x'/>
+                </div>
             </footer>
     )
 }

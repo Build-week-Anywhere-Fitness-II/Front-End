@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardTitle, Col, Container, Row, CardText, Button } from 'reactstrap';
+import ProductWrapper from '../ProductWrapper';
+import ButtonContainer from '../ButtonContainer';
 
 const InstructorClassList = (props, {update}) => {
 
@@ -11,7 +13,7 @@ return filtered
 const history = useHistory();
 return (
 <div>
-<Container>
+<ProductWrapper>
     <Row>
         {filteredArray.map((e) => {
             return (
@@ -19,13 +21,13 @@ return (
 <Card key={e.id}>
     <CardTitle>{e.class_name}</CardTitle>
     <CardText>{e.instructor_id}</CardText>
-    <Button onClick={() => history.push(`/user/${e.instructor_id}/edit/${e.id}`)}>Edit</Button>
+    <ButtonContainer onClick={() => history.push(`/user/${e.instructor_id}/edit/${e.id}`)}>Edit</ButtonContainer>
 </Card>
 </Col>
             )
         })}
     </Row>
-</Container>
+</ProductWrapper>
 </div>
 );
 }

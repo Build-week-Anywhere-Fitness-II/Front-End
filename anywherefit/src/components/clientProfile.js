@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardTitle } from 'reactstrap';
 import { Auth } from '../utils/axiosAuth';
+import ProductWrapper from './ProductWrapper';
 
 const ClientProfile = () => {
     const {id} = useParams();
@@ -17,13 +18,13 @@ setData(res.data);
 return (
 <div>
     <h1>Your Classes</h1>
-    <div>
+    <ProductWrapper>
         {data.map((e)=> (
     <Card key={e.id}>
         <CardTitle>{e.class_name}</CardTitle>
     </Card>
         ))}
-    </div>
+    </ProductWrapper>
 </div>
 )
 }
