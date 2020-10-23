@@ -2,11 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardTitle, Col, Container, Row, CardText, Button } from 'reactstrap';
 
-const InstructorClassList = (props) => {
+const InstructorClassList = (props, {update}) => {
+
 const user = window.sessionStorage.getItem('user')
 const filteredArray = props.classes.filter(e => e.instructor_id === Number(user)).map((filtered) => {
 return filtered
-})
+},[update]);
 const history = useHistory();
 return (
 <div>
