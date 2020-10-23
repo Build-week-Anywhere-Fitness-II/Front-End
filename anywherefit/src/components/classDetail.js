@@ -47,7 +47,7 @@ console.log('sign up info', signUpInfo)
                </CardTitle>
 
                <CardText>
-                   {`${exactClass.class_name} will be held at ${exactClass.location} on ${exactClass.class_time}. Due to COVID-19 the class will be restricted to ${exactClass.max_class_size}. The class will mainly focus on ${exactClass.type} exercises and the class will last approximately ${exactClass.duration_minutes}.`}
+                   {`${exactClass.class_name} will be held at ${exactClass.location} on ${exactClass.class_time}. Due to COVID-19 the class will be restricted to ${exactClass.max_class_size} attendees. The class will mainly focus on ${exactClass.type} exercises and the class will last approximately ${exactClass.duration_minutes} minutes.`}
 
                    {`There are ${exactClass.attendees} users currently signed-up.`}
                </CardText>
