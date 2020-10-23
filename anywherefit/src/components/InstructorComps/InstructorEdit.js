@@ -46,6 +46,7 @@ Auth()
     return (
         <Container>
             {data ?
+    (
         <Form onSubmit={submit}>
             <FormGroup>
                 <Input type="text"
@@ -66,7 +67,7 @@ Auth()
                 />
             </FormGroup>
             <Button>Submit Edit</Button>
-</Form>
+</Form>)
 : <h1>loading</h1>
             }
             <Form onSubmit={deleteClass}>
