@@ -1,35 +1,20 @@
 import React from 'react'
-import facebook from '../facebook.jpg'
-import instagram from '../instagram.jpg'
-import styled from 'styled-components';
-import tweet from '../tweet.jpg'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faFacebookSquare, faInstagramSquare, faTwitterSquare} from '@fortawesome/free-brands-svg-icons';
+import "./styles/footer.css"
 
 const Footer = () => {
     return (
-           <FooterDiv>
-                <img src={facebook} alt="facebook"/>
-                <img src={instagram} alt="instagram"/>
-                <img src={tweet} alt="tweet"/>
-            </FooterDiv> 
+           <footer>
+<div id="footer">
+<FontAwesomeIcon icon={faFacebookSquare} size='4x'/>
+<FontAwesomeIcon icon={faTwitterSquare} size='4x'/>
+<FontAwesomeIcon icon={faInstagramSquare} size='4x'/>
+</div>
+            </footer>
     )
 }
 
-const FooterDiv = styled.footer`
-footer {
-    height: 10vh;
-    padding: 0 35%;
-    display: flex;
-    flex-direction:row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #1e222e;
- }
- img {
-    margin: 0;
-    width:33%;
- }
- 
-`;
 
 
 export default Footer;

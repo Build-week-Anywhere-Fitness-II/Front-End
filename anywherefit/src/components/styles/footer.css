@@ -1,0 +1,12 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+}
+#footer {
+  display: flex;
+  justify-content: space-around;
+  margin: 1% auto;
+  width: 20%;
+}

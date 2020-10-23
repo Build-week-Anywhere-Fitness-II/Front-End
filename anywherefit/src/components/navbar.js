@@ -36,10 +36,19 @@ const NavBar = () => {
 
            <Navbar light expand="md" className="flex-d justify-content-center" style={{backgroundColor:'#1e222e'}}>
                <NavbarBrand className="flex-d justify-content-center"href="/" style={{color:'white',fontWeight:'bold'}}>
+                   {darkMode ? <NavLink href="https://anywhere-fitness-dark-theme.netlify.app/index.html">
                    <img src={Logo} alt="Website Logo"></img>
+                   </NavLink> :
+                   <NavLink href="https://anywhere-fitness-light-theme.netlify.app/">
+                   <img src={Logo} alt="Website Logo"></img>
+                   </NavLink>
+}
                 </NavbarBrand>
                <NavItem style={{listStyle:'none'}} >
-                   <NavLink href="/about" style={{color:'#E4576E'}}>About Us</NavLink>
+                   {darkMode ?
+                   <NavLink href='https://anywhere-fitness-dark-theme.netlify.app/about.html' style={{color:'#E4576E'}}>About Us</NavLink>
+                   : <NavLink href='https://anywhere-fitness-light-theme.netlify.app/about'style={{color:'#E4576E'}}>About Us</NavLink>
+}
                </NavItem>
                <NavItem style={{listStyle:'none'}} >
                    <NavLink href="/classes" style={{color:'#E4576E'}}>Classes</NavLink>
