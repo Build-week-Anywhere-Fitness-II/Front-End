@@ -25,7 +25,6 @@ console.log(data);
     
     return (
 <div>
-    <h1>Classes</h1>
     <ClassSearch data={data}/>
     {/* <ClassCard data={data}/> */}
 </div>
