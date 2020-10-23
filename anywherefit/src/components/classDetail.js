@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import { fetchClasses} from '../utils/actions/classAction';
 import { Auth } from '../utils/axiosAuth';
+import { useHistory } from 'react-router-dom';
 
 const ClassDetail = (props) => {
     const stringId = window.sessionStorage.getItem('user')
@@ -21,12 +22,15 @@ const ClassDetail = (props) => {
  class_id: (exactClass ? exactClass.id : 0),
 
  }
+ const history = useHistory();
  const submit = (e) => {
      Auth()
     .post('api/classes/signup', signUpInfo)
     .then((res) => {
   console.log("sign up success", res.data);
+
     })
+    history.push(`/user/${numId}`)
      }
 console.log('sign up info', signUpInfo)
     console.log('exact Class',exactClass);

@@ -12,6 +12,7 @@ import {
     CustomInput,
     } from 'reactstrap';
     import useDarkMode from '../utils/custom hooks/useDarkMode';
+import { useParams } from 'react-router-dom';
 
 const NavBar = () => {
     const token = window.sessionStorage.getItem('token');
@@ -20,6 +21,7 @@ const NavBar = () => {
     //State for Dark Mode
     const [darkMode, setDarkMode] = useDarkMode(true);
 
+    const id = window.sessionStorage.getItem('user');
     //const toggle = ()=>setIsOpen(!isOpen);
 
     //toggle Function for Dark Mode
@@ -43,7 +45,7 @@ const NavBar = () => {
                </NavItem>
                {token ?
                                <NavItem style={{listStyle:'none'}}>
-                               <NavLink href="/user/:id" style={{color:'#e4576e'}}> User Profile</NavLink>
+                               <NavLink href={`/user/${id}`} style={{color:'#e4576e'}}> User Profile</NavLink>
                            </NavItem>
 
                 :
