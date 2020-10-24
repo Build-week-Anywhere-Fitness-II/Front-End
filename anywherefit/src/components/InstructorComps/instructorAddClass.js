@@ -39,14 +39,11 @@ const InstructorAddClass =(props, {setUpdate}) => {
         [e.target.name]:e.target.value
         });
         }
-        
-
 // handles form submit
         const submit =(e) => {
         e.preventDefault();
-        props.addClass(postForm, ()=>{
-            setUpdate(true)
-        });
+        props.addClass(postForm)
+        window.location.reload();
         }
 
 return (
