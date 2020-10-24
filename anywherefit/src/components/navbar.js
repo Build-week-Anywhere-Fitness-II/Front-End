@@ -82,16 +82,16 @@ const NavBar = () => {
                 <DropdownToggle style={{color:'#E4576E'}}  nav caret>
                     Log-In/Sign-Up
                 </DropdownToggle>
-                <DropdownMenu >
+                <DropdownMenu style={{backgroundColor:'#1e222e'}}>
                     <DropdownItem>
                     <NavItem style={{listStyle:'none'}} >
-                        <NavLink href="/login" style={{color:'black'}}>
+                        <NavLink href="/login" style={{color:'#E4576E'}}>
                             Log-In
                         </NavLink>
                     </NavItem>
                     </DropdownItem>
                     <DropdownItem>
-                        <NavLink href="/register" style={{color:'black'}}>
+                        <NavLink href="/register" style={{color:'#E4576E'}}>
                             Sign-Up
                         </NavLink>
                     </DropdownItem>
