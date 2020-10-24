@@ -27,8 +27,8 @@ export const addClass = (classes) => (dispatch) => {
   Auth()
     .post("api/classes", classes)
     .then((res) => {
-      console.log("add succes", res.data);
-      dispatch({ type: ADD_SUCCESS, payload: res.data });
+      console.log("add succes", classes);
+      dispatch({ type: ADD_SUCCESS});
     })
     .catch((err) => {
       console.log("errors!", err);

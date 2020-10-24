@@ -28,17 +28,18 @@ Auth()
 .put(`api/classes/edit/${classId}`, data)
 .then((res) => {
 console.log(res);
+history.push(`/user/${id}`)
 })
 .catch((err) => console.log(err));
 }
-const {push} =useHistory();
+const history =useHistory();
 const deleteClass = e => {
 e.preventDefault();
 Auth()
 .delete(`api/classes/delete/${classId}`)
 .then((res) => {
     console.log(res);
-    push(`user/${id}`)
+    history.push(`/user/${id}`)
     })
     .catch((err) => console.log(err));
     }

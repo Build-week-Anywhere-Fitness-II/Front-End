@@ -14,7 +14,7 @@ const InstructorModal = (props, {setUpdate}) => {
     <Modal isOpen={open} toggle={toggle}>
         <ModalHeader toggle={toggle}>Fill Out All Fields</ModalHeader>
         <ModalBody>
-<InstructorAddClass addClass={props.addClass} setUpdate={setUpdate}/> {/* passing props for post request */}
+<InstructorAddClass addClass={props.addClass}/> {/* passing props for post request */}
         </ModalBody>
         <ModalFooter>
 <Button>Cancel</Button>

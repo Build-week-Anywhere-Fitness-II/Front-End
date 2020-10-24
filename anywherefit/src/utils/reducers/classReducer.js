@@ -43,7 +43,7 @@ errors:''
               return {
                 ...state,
                 isFetching: false,
-                classes: action.payload,
+                classes: [...state.classes],
                 error: "",
               };
             case ADD_ERROR:

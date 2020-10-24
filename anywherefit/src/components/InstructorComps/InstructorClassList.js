@@ -4,13 +4,14 @@ import { Card, CardTitle, Col, Container, Row, CardText, Button } from 'reactstr
 import ProductWrapper from '../ProductWrapper';
 import ButtonContainer from '../ButtonContainer';
 
-const InstructorClassList = (props, {update}) => {
+const InstructorClassList = (props) => {
 
-const user = window.sessionStorage.getItem('user')
-const filteredArray = props.classes.filter(e => e.instructor_id === Number(user)).map((filtered) => {
-return filtered
-},[update]);
+const user = window.sessionStorage.getItem('user');
+
+const filteredArray = props.classes.filter(e => e.instructor_id === Number(user));
+
 const history = useHistory();
+
 return (
 <div>
 <ProductWrapper>
